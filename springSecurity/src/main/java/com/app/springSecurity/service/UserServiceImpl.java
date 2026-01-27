@@ -1,12 +1,9 @@
 package com.app.springSecurity.service;
-
 import com.app.springSecurity.Entity.UserEntity;
 import com.app.springSecurity.dto.UserDto;
 import com.app.springSecurity.mapper.UserMapper;
 import com.app.springSecurity.repositry.UserRepositry;
 import org.springframework.stereotype.Service;
-
-
 import java.util.Optional;
 
 @Service
@@ -19,7 +16,6 @@ public class UserServiceImpl implements UserService {
         this.userRepositry = userRepositry;
         this.userMapper = userMapper;
     }
-
 
     @Override
     public String saveUser(UserDto userDto) {
