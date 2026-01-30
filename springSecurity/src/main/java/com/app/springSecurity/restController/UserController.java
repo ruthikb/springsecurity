@@ -3,7 +3,6 @@ package com.app.springSecurity.restController;
 import com.app.springSecurity.dto.UserDto;
 import com.app.springSecurity.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +14,7 @@ public class UserController {
     public UserController(UserService service) {
         this.service = service;
     }
+
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDto userDto) {
@@ -34,6 +34,7 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUser(@PathVariable Integer id, @RequestBody UserDto userDto) {
