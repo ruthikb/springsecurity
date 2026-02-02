@@ -1,9 +1,13 @@
 package com.app.springSecurity.restController;
 
+import com.app.springSecurity.Entity.UserEntity;
 import com.app.springSecurity.dto.UserDto;
 import com.app.springSecurity.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService service;
+
     public UserController(UserService service) {
         this.service = service;
     }
@@ -18,14 +23,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDto userDto) {
-        if ( userDto == null) {
+        if (userDto == null) {
             return ResponseEntity.badRequest().body("Invalid user data");
-        }
-        else {
+        } else {
             service.saveUser(userDto);
         }
         return ResponseEntity.ok("User saved successfully");
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable Integer id) {
         UserDto user = service.getUserById(id);
@@ -35,10 +40,20 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+//    @GetMapping("/all")
+//    public ResponseEntity<?> getALlUser() {
+//List<UserEntity>userEntities=service.getAllUser();
+//        if(userEntities.isEmpty()){
+//            return ResponseEntity.ok("No data found");
+//        }
+//        return ResponseEntity.ok("userEntities");
+//
+//    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUser(@PathVariable Integer id, @RequestBody UserDto userDto) {
-        return  ResponseEntity.ok(service.updateUser(id, userDto));
+        return ResponseEntity.ok(service.updateUser(id, userDto));
     }
 
     @DeleteMapping("/{id}")
