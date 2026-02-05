@@ -5,6 +5,8 @@ import com.app.springSecurity.dto.UserDto;
 import com.app.springSecurity.mapper.UserMapper;
 import com.app.springSecurity.repositry.UserRepositry;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,6 +68,14 @@ public class UserServiceImpl implements UserService {
         }
         return "User not found.";
     }
+
+    @Override
+    public List<UserEntity> getAllUser() {
+
+        return userRepositry.findAll();
+    }
+
+
 
 
 }

@@ -3,6 +3,7 @@ package com.app.springSecurity.restController;
 import com.app.springSecurity.Entity.UserEntity;
 import com.app.springSecurity.dto.UserDto;
 import com.app.springSecurity.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,6 @@ public class UserController {
     public UserController(UserService service) {
         this.service = service;
     }
-
 
 
     @PostMapping
@@ -41,16 +41,14 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
-//    @GetMapping("/all")
-//    public ResponseEntity<?> getALlUser() {
-//List<UserEntity>userEntities=service.getAllUser();
-//        if(userEntities.isEmpty()){
-//            return ResponseEntity.ok("No data found");
-//        }
-//        return ResponseEntity.ok("userEntities");
-//
-//    }
-
+    @GetMapping("getAllUsers")
+    public ResponseEntity<List<UserEntity>> getAllUsers() {
+        List<UserEntity> users = service.getAllUser();
+        if (users.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ArrayList<>());
+        }
+        return ResponseEntity.ok(users);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateUser(@PathVariable Integer id, @RequestBody UserDto userDto) {
