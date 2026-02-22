@@ -36,7 +36,7 @@ class UserServiceImplTest {
         userDto = new UserDto();
         userDto.setFirstName("Kruthik");
         userDto.setLastName("S");
-        userDto.setGender('M');
+        userDto.setGender("M");
         userDto.setPhoneNumber("1234567890");
         userDto.setEmail("kruthik@example.com");
         userDto.setLocalDate(LocalDate.of(1995, 5, 20));
